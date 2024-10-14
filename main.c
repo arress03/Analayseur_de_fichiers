@@ -2,7 +2,7 @@
 #include "analyseur.h"
 
 int main() {
-    const char* chemin = "chemin/vers/le/fichier.txt"; // Remplacez par le chemin réel du fichier à analyser
+    const char* chemin = "C:/ProjetC/test.txt"; // Remplacez par le chemin réel du fichier à analyser
     FILE* fichier = ouvrirFichierLecture(chemin);
 
     int nombreLignes = compterLignes(fichier);
@@ -11,7 +11,7 @@ int main() {
 
     printf("Nombre de lignes : %d\n", nombreLignes);
     printf("Nombre de mots : %d\n", nombreMots);
-    printf("Nombre de caractères : %d\n", nombreCaracteres);
+    printf("Nombre de caracteres : %d\n", nombreCaracteres);
 
     fclose(fichier);
     return 0;
