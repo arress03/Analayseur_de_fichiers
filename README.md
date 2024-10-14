@@ -17,13 +17,18 @@ Ce projet est un **analyseur de fichier texte** développé en langage C. Il per
 
 ### Compilation
 
-Pour compiler le projet, utilisez la commande suivante avec `mingw32-make`, sur Windows ou `make` sur Linux :
+Pour compiler le projet, utilisez la commande suivante avec `mingw32-make`, sur Windows :
 
 ```bash
 mingw32-make -f make.mak
 ```
+ou `make` sur Linux 
 
-Cela génère l'exécutable analyseur_texte.exe.
+```bash
+make
+```
+
+**Cela génère l'exécutable analyseur_texte.exe.**
 
 Executez le avec : 
 
