@@ -17,6 +17,9 @@ Ce projet est un **analyseur de fichier texte** développé en langage C. Il per
 
 ## Utilisation
 
+Téléchargez le projet en **.zip** et extraire les fichiers.
+Ouvrez le PowerShell ou le terminal Linux et allez au dossier du projet.
+
 ### Compilation
 
 Pour compiler le projet, utilisez la commande suivante avec `mingw32-make`, sur Windows :
@@ -35,8 +38,11 @@ make
 Executez le avec : 
 
 ```bash
-./analyseur_texte
+./analyseur_texte <nom du fichier à analyser>
 ```
+
+**Il faut que le fichier txt à analyser soit dans le dossier du projet.**
+Les resultats seront ecrits dans le fichier nommé **sortie.txt**.
 
 ## Dépendances
 
