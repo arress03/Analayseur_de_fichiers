@@ -1,0 +1,4 @@
+Résultats de l'analyse du fichier texte :
+Nombre de lignes : 1
+Nombre de mots : 4
+Nombre de caractères : 21

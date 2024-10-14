@@ -11,9 +11,7 @@ int main() {
     int nombreMots = compterMots(fichier);
     int nombreCaracteres = compterCaracteres(fichier);
 
-    printf("Nombre de lignes : %d\n", nombreLignes);
-    printf("Nombre de mots : %d\n", nombreMots);
-    printf("Nombre de caractères : %d\n", nombreCaracteres);
+    printf("Voir les resultats dans le fichier sortie.txt \n");
 
     // Sauvegarder les résultats dans un fichier de sortie
     sauvegarderResultats(cheminSortie, nombreLignes, nombreMots, nombreCaracteres);
