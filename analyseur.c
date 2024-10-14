@@ -59,3 +59,7 @@ int compterCaracteres(FILE* fichier) {
     rewind(fichier);  // Remettre le fichier au début après lecture
     return caracteres;
 }
+struct data 
+{
+
+}
