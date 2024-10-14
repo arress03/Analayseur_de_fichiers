@@ -11,4 +11,7 @@ int compterLignes(FILE* fichier);
 int compterMots(FILE* fichier);
 int compterCaracteres(FILE* fichier);
 
+// Fonction pour sauvegarder les résultats
+void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres);
+
 #endif
