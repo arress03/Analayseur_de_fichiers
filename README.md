@@ -6,11 +6,13 @@ Ce projet est un **analyseur de fichier texte** développé en langage C. Il per
 
 ## Fonctionnalités
 
-- **Comptage des lignes** : Compte le nombre total de lignes dans le fichier texte.
-- **Comptage des mots** : Compte le nombre total de mots dans le fichier.
-- **Comptage des caractères** : Compte le nombre total de caractères dans le fichier.
-- **Ecriture des résultats dans un fichier txt** : Ecrit les résultats dans un fichier txt.
-- **Utilisation d'un makefile** : Compilation du projet avec un fichier `make.mak`.
+- **Comptage des lignes** : Compte le nombre total de lignes dans le fichier texte. [x]
+- **Comptage des mots** : Compte le nombre total de mots dans le fichier. [x]
+- **Comptage des caractères** : Compte le nombre total de caractères dans le fichier. [x]
+- **Calcul de la fréquence de chaque mot** : Calcule la fréquence d'apparition de chaque mot dans le fichier. 
+- **Affichage des mots les plus fréquents** : Affiche les mots les plus fréquents dans le fichier, dans l'ordre décroissant de fréquence. 
+- **Ecriture des résultats dans un fichier txt** : Ecrit les résultats dans un fichier txt. [x]
+- **Utilisation d'un makefile** : Compilation du projet avec un fichier `make.mak`. [x]
 
 
 ## Utilisation
