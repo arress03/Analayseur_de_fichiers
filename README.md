@@ -62,7 +62,7 @@ Entrez le nom du fichier de sortie : Les résultats de l'analyse seront écrits 
 
 Voici un exemple dans le terminal : 
 
-![PNG](https://i.gyazo.com/b6911472634d254e3ea09d448ec56907.png)
+![PNG](https://i.gyazo.com/a8df0b013c2e2966c6aad36950a86e6a.png)
 
 ## Dépendances
 
