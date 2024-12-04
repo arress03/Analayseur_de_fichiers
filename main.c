@@ -1,33 +1,41 @@
+#include "analyseur.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "analyseur.h"
+
+#define MAX_MOTS 1000
 
 int main(int argc, char *argv[]) {
-    // Vérification du nombre d'arguments
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <nom_du_fichier_texte>\n", argv[0]);
-        exit(EXIT_FAILURE);
+    if (argc != 3) {
+        printf("Usage: %s <fichier_entree> <fichier_sortie>\n", argv[0]);
+        return 1;
     }
 
-    const char* cheminEntree = argv[1];  // Chemin du fichier passé en argument
-    const char* cheminSortie = "sortie.txt";  // Nom du fichier de sortie (modifiable si besoin)
-
-    // Ouvrir le fichier texte à analyser
-    FILE* fichier = ouvrirFichierLecture(cheminEntree);
+    // Ouvrir le fichier d'entrée
+    FILE *fichierEntree = ouvrirFichierLecture(argv[1]);
+    if (fichierEntree == NULL) {
+        printf("Erreur : Impossible d'ouvrir le fichier d'entrée %s\n", argv[1]);
+        return 1;
+    }
 
     // Compter les lignes, mots et caractères
-    int nombreLignes = compterLignes(fichier);
-    int nombreMots = compterMots(fichier);
-    int nombreCaracteres = compterCaracteres(fichier);
+    int nombreLignes = compterLignes(fichierEntree);
+    int nombreMots = compterMots(fichierEntree);
+    int nombreCaracteres = compterCaracteres(fichierEntree);
 
-    // Afficher les résultats à l'écran
-    printf("Resultats stockes dans le fichier 'sortie.txt' \n");
+    // Calculer la fréquence des mots
+    struct Mot tableauMots[MAX_MOTS];
+    int nombreMotsDistincts;
+    calculerFrequenceMots(fichierEntree, tableauMots, &nombreMotsDistincts);
+    trierMotsParFrequence(tableauMots, nombreMotsDistincts);
 
-    // Sauvegarder les résultats dans un fichier de sortie
-    sauvegarderResultats(cheminSortie, nombreLignes, nombreMots, nombreCaracteres);
 
-    // Fermer le fichier
-    fclose(fichier);
+    // Sauvegarder les résultats dans le fichier de sortie
+    sauvegarderResultats(argv[2], nombreLignes, nombreMots, nombreCaracteres, tableauMots, nombreMotsDistincts);
+
+    // Fermer le fichier d'entrée
+    fclose(fichierEntree);
+
+    printf("Analyse terminée. Résultats sauvegardés dans %s\n", argv[2]);
 
     return 0;
 }

@@ -1,4 +1,16 @@
 Résultats de l'analyse du fichier texte :
-Nombre de lignes : 2
-Nombre de mots : 8
-Nombre de caractères : 46
+Nombre de lignes : 6
+Nombre de mots : 218
+Nombre de caractères : 1506
+
+Les 10 mots les plus fréquents dans le fichier (ordre décroissant) :
+de : 12
+à : 6
+en : 6
+la : 5
+des : 5
+le : 4
+un : 4
+par : 3
+et : 3
+les : 3

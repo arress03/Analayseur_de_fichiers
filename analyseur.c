@@ -1,5 +1,9 @@
 #include "analyseur.h"
 #include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
+#define TAILLE_MAX_MOT 1000
 
 // Fonction pour ouvrir un fichier en mode lecture
 FILE* ouvrirFichierLecture(const char* chemin) {
@@ -52,8 +56,42 @@ int compterCaracteres(FILE* fichier) {
     return caracteres;
 }
 
-// Fonction pour sauvegarder les résultats dans un fichier de sortie
-void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres) {
+
+// Fonction pour ajouter un mot ou incrémenter sa fréquence
+void ajouterMotOuIncrementer(char* mot, struct Mot* tableauMots, int* nombreMots) {
+    for (int i = 0; i < *nombreMots; i++) {
+        if (strcmp(tableauMots[i].mot, mot) == 0) {
+            tableauMots[i].frequence++;
+            return;
+        }
+    }
+    strcpy(tableauMots[*nombreMots].mot, mot);
+    tableauMots[*nombreMots].frequence = 1;
+    (*nombreMots)++;
+}
+
+// Fonction pour extraire les mots d'un fichier et calculer leur fréquence
+void calculerFrequenceMots(FILE* fichier, struct Mot* tableauMots, int* nombreMots) {
+    char mot[TAILLE_MAX_MOT];
+    *nombreMots = 0;
+    
+    while (fscanf(fichier, "%99s", mot) == 1) {
+        ajouterMotOuIncrementer(mot, tableauMots, nombreMots);
+    }
+    rewind(fichier);
+}
+int comparerFrequence(const void* a, const void* b) {
+    struct Mot* motA = (struct Mot*)a;
+    struct Mot* motB = (struct Mot*)b;
+    return motB->frequence - motA->frequence;  // Tri décroissant
+}
+
+void trierMotsParFrequence(struct Mot* tableauMots, int nombreMots) {
+    qsort(tableauMots, nombreMots, sizeof(struct Mot), comparerFrequence);
+}
+
+// Fonction pour sauvegarder les résultats, y compris la fréquence des mots
+void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres, struct Mot* tableauMots, int nombreMotsDistincts) {
     FILE* fichierSortie = fopen(cheminSortie, "w");
     if (fichierSortie == NULL) {
         perror("Erreur lors de l'ouverture du fichier de sortie");
@@ -65,6 +103,14 @@ void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombre
     fprintf(fichierSortie, "Nombre de lignes : %d\n", nombreLignes);
     fprintf(fichierSortie, "Nombre de mots : %d\n", nombreMots);
     fprintf(fichierSortie, "Nombre de caractères : %d\n", nombreCaracteres);
+    
+    // Ajouter la fréquence des mots dans le fichier de sortie
+    fprintf(fichierSortie, "\nLes 10 mots les plus fréquents dans le fichier (ordre décroissant) :\n");
+    int limite = (nombreMotsDistincts < 10) ? nombreMotsDistincts : 10;
+    for (int i = 0; i < limite; i++) {
+        fprintf(fichierSortie, "%s : %d\n", tableauMots[i].mot, tableauMots[i].frequence);
+    }
+
 
     fclose(fichierSortie);  // Fermer le fichier de sortie
 }
