@@ -14,6 +14,10 @@ Ce projet est un **analyseur de fichier texte** développé en langage C. Il per
 - **Ecriture des résultats dans un fichier txt** : Ecrit les résultats dans un fichier txt. [x]
 - **Utilisation d'un makefile** : Compilation du projet avec un fichier `make.mak`. [x]
 
+## Fonctionnalités bonus 
+
+- **Support Multilingue** : Prend en charge les textes en Français, Anglais, Russe et Espagnol, avec un menu interactif pour sélectionner la langue. [x]
+
 
 ## Utilisation
 
@@ -42,11 +46,23 @@ make
 Executez le avec : 
 
 ```bash
-./analyseur_texte <nom du fichier à analyser> <nom du fichier de sortie>
+./analyseur_texte
 ```
+Un menu interactif s'affichera pour vous guider à travers les étapes :
+Choisissez une langue parmi les 4 disponibles :
 
-**Il faut que le fichier txt à analyser soit dans le dossier du projet.**
-Les resultats seront ecrits dans le fichier nommé **sortie.txt**.
+- Français
+- Anglais
+- Russe
+- Espagnol
+
+Entrez le nom du fichier à analyser : **Le fichier doit être dans le même dossier que l'exécutable.** Des fichiers dans chaque langues sont fournis.
+
+Entrez le nom du fichier de sortie : Les résultats de l'analyse seront écrits dans ce fichier.
+
+Voici un exemple dans le terminal : 
+
+![PNG](https://i.gyazo.com/b6911472634d254e3ea09d448ec56907.png)
 
 ## Dépendances
 
