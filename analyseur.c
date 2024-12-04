@@ -19,14 +19,22 @@ FILE* ouvrirFichierLecture(const char* chemin) {
 int compterLignes(FILE* fichier) {
     int lignes = 0;
     char c;
+    int fichierNonVide = 0; // Pour gérer les fichiers vides
+
     while ((c = fgetc(fichier)) != EOF) {
+        fichierNonVide = 1; // Indique que le fichier contient au moins un caractère
         if (c == '\n') {
             lignes++;
         }
     }
+    // Ajouter une ligne supplémentaire si le dernier caractère n'est pas un saut de ligne
+    if (fichierNonVide && c != '\n') {
+        lignes++;
+    }
     rewind(fichier);  // Remettre le fichier au début après lecture
     return lignes;
 }
+
 
 // Fonction pour compter le nombre de mots dans un fichier
 int compterMots(FILE* fichier) {

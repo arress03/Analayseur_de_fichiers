@@ -1,10 +1,12 @@
 #include "analyseur.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 
 #define MAX_MOTS 1000
 
 int main(int argc, char *argv[]) {
+    setlocale(LC_ALL, "fr_FR.UTF-8");
     if (argc != 3) {
         printf("Usage: %s <fichier_entree> <fichier_sortie>\n", argv[0]);
         return 1;
