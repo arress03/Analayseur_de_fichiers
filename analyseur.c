@@ -122,3 +122,17 @@ void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombre
 
     fclose(fichierSortie);  // Fermer le fichier de sortie
 }
+
+
+
+// Fonction qui vérifie si un mot est un palindrome
+int estPalindrome(const char* mot) {
+    int longueur = strlen(mot);
+    for (int i = 0, j = longueur - 1; i < j; i++, j--) {
+        // Compare les caractères en ignorant la casse
+        if (tolower(mot[i]) != tolower(mot[j])) {
+            return 0; // Pas un palindrome
+        }
+    }
+    return 1; // C'est un palindrome
+}
