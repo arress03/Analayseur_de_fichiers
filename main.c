@@ -67,6 +67,7 @@ int main() {
     int nombreMotsDistincts;
     calculerFrequenceMots(fichier, tableauMots, &nombreMotsDistincts);
     trierMotsParFrequence(tableauMots, nombreMotsDistincts);
+    detecterPalindromes(fichier);
 
     // Sauvegarder les résultats
     sauvegarderResultats(fichierSortie, nombreLignes, nombreMots, nombreCaracteres, tableauMots, nombreMotsDistincts);
