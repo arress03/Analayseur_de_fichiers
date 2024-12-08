@@ -136,3 +136,23 @@ int estPalindrome(const char* mot) {
     }
     return 1; // C'est un palindrome
 }
+void detecterPalindromes(FILE* fichier) {
+    char mot[100];
+    int compteur = 0;
+
+    printf("Mots palindromes trouvés dans le fichier :\n");
+
+    // Lire chaque mot du fichier
+    while (fscanf(fichier, "%99s", mot) == 1) {
+        if (estPalindrome(mot)) {
+            printf("- %s\n", mot);
+            compteur++;
+        }
+    }
+
+    if (compteur == 0) {
+        printf("Aucun mot palindrome trouvé.\n");
+    }
+
+    rewind(fichier);
+}
