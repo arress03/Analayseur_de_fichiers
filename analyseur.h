@@ -27,5 +27,7 @@ void trierMotsParFrequence(struct Mot* tableauMots, int nombreMots);
 
 // Fonction pour sauvegarder les résultats
 void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres, struct Mot* tableauMots, int nombreMotsDistincts);
+// Fonction palindrome
+int estPalindrome(const char* mot);
 
 #endif
