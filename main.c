@@ -5,6 +5,7 @@
 #include <string.h>
 
 #define MAX_MOTS 1000
+#define MAX_PALINDROMES 100
 
 void afficherMenuLangue() {
     printf("Choisissez une langue :\n");
@@ -67,10 +68,13 @@ int main() {
     int nombreMotsDistincts;
     calculerFrequenceMots(fichier, tableauMots, &nombreMotsDistincts);
     trierMotsParFrequence(tableauMots, nombreMotsDistincts);
-    detecterPalindromes(fichier);
+
+    // Détecter les mots palindromes
+    char palindromes[MAX_PALINDROMES][TAILLE_MAX_MOT];
+    int nombrePalindromes = detecterPalindromes(fichier, palindromes);
 
     // Sauvegarder les résultats
-    sauvegarderResultats(fichierSortie, nombreLignes, nombreMots, nombreCaracteres, tableauMots, nombreMotsDistincts);
+    sauvegarderResultats(fichierSortie, nombreLignes, nombreMots, nombreCaracteres, tableauMots, nombreMotsDistincts, palindromes, nombrePalindromes);
 
     fclose(fichier);
     printf("Analyse terminée. Résultats sauvegardés dans %s\n", fichierSortie);

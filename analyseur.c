@@ -98,8 +98,39 @@ void trierMotsParFrequence(struct Mot* tableauMots, int nombreMots) {
     qsort(tableauMots, nombreMots, sizeof(struct Mot), comparerFrequence);
 }
 
+
+// Fonction qui vérifie si un mot est un palindrome
+int estPalindrome(const char* mot) {
+    int longueur = strlen(mot);
+    for (int i = 0, j = longueur - 1; i < j; i++, j--) {
+        // Compare les caractères en ignorant la casse
+        if (tolower(mot[i]) != tolower(mot[j])) {
+            return 0; // Pas un palindrome
+        }
+    }
+    return 1; // C'est un palindrome
+}
+
+// Fonction pour détecter les mots palindromes et les stocker dans un tableau
+int detecterPalindromes(FILE* fichier, char palindromes[][TAILLE_MAX_MOT]) {
+    char mot[TAILLE_MAX_MOT];
+    int compteur = 0;
+
+    // Lire chaque mot du fichier
+    while (fscanf(fichier, "%s", mot) == 1) {
+        if (estPalindrome(mot)) {
+            strcpy(palindromes[compteur], mot); // Stocker le palindrome
+            compteur++;
+        }
+    }
+
+    rewind(fichier); // Remettre le fichier au début pour d'autres analyses
+    return compteur; // Retourner le nombre de palindromes trouvés
+}
+
+
 // Fonction pour sauvegarder les résultats, y compris la fréquence des mots
-void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres, struct Mot* tableauMots, int nombreMotsDistincts) {
+void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres, struct Mot* tableauMots, int nombreMotsDistincts, const char palindromes[][TAILLE_MAX_MOT], int nombrePalindromes) {
     FILE* fichierSortie = fopen(cheminSortie, "w");
     if (fichierSortie == NULL) {
         perror("Erreur lors de l'ouverture du fichier de sortie");
@@ -118,41 +149,15 @@ void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombre
     for (int i = 0; i < limite; i++) {
         fprintf(fichierSortie, "%s : %d\n", tableauMots[i].mot, tableauMots[i].frequence);
     }
-
+    
+    fprintf(fichierSortie, "\nMots palindromes :\n");
+    if (nombrePalindromes == 0) {
+        fprintf(fichierSortie, "Aucun mot palindrome trouvé.\n");
+    } else {
+        for (int i = 0; i < nombrePalindromes; i++) {
+            fprintf(fichierSortie, "- %s\n", palindromes[i]);
+        }
+    }
 
     fclose(fichierSortie);  // Fermer le fichier de sortie
-}
-
-
-
-// Fonction qui vérifie si un mot est un palindrome
-int estPalindrome(const char* mot) {
-    int longueur = strlen(mot);
-    for (int i = 0, j = longueur - 1; i < j; i++, j--) {
-        // Compare les caractères en ignorant la casse
-        if (tolower(mot[i]) != tolower(mot[j])) {
-            return 0; // Pas un palindrome
-        }
-    }
-    return 1; // C'est un palindrome
-}
-void detecterPalindromes(FILE* fichier) {
-    char mot[100];
-    int compteur = 0;
-
-    printf("Mots palindromes trouvés dans le fichier :\n");
-
-    // Lire chaque mot du fichier
-    while (fscanf(fichier, "%99s", mot) == 1) {
-        if (estPalindrome(mot)) {
-            printf("- %s\n", mot);
-            compteur++;
-        }
-    }
-
-    if (compteur == 0) {
-        printf("Aucun mot palindrome trouvé.\n");
-    }
-
-    rewind(fichier);
 }

@@ -17,6 +17,7 @@ Ce projet est un **analyseur de fichier texte** développé en langage C. Il per
 ## Fonctionnalités bonus 
 
 - **Support Multilingue** : Prend en charge les textes en Français, Anglais, Russe et Espagnol, avec un menu interactif pour sélectionner la langue. [x]
+- **Detection mots palindromes** : Détecte et affiche les mots palindromes. [x]
 
 
 ## Utilisation

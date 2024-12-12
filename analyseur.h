@@ -24,11 +24,11 @@ void ajouterMotOuIncrementer(char* mot, struct Mot* tableauMots, int* nombreMots
 void calculerFrequenceMots(FILE* fichier, struct Mot* tableauMots, int* nombreMots);
 void trierMotsParFrequence(struct Mot* tableauMots, int nombreMots);
 
-
 // Fonction pour sauvegarder les résultats
-void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres, struct Mot* tableauMots, int nombreMotsDistincts);
-// Fonction palindrome
-int estPalindrome( char* mot);
-void detecterPalindromes(FILE* fichier)
+void sauvegarderResultats(const char* cheminSortie, int nombreLignes, int nombreMots, int nombreCaracteres, struct Mot* tableauMots, int nombreMotsDistincts, const char palindromes[][TAILLE_MAX_MOT], int nombrePalindromes);
+
+// Fonctions pour les palindromes
+int estPalindrome(const char* mot);
+int detecterPalindromes(FILE* fichier, char palindromes[][TAILLE_MAX_MOT]);
 
 #endif
